@@ -1,4 +1,4 @@
-from rabbitmqclient import *
+from rabbit.rabbitmqclient import *
 publisher = PikaPublisher(exchange_name="ticker")
 
 from publisher import *

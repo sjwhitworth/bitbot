@@ -1,0 +1,7 @@
+Todo
+====
+
+* Add in logic to write to a timeseries database.
+* Add a stats service that calculates the current 5/30/120 minute statistics (variance, SD, etc)
+* Build a model that tries to predict real time whether to buy or not.
+* Build logic to backtest trading strategies.
