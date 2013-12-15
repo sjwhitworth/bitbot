@@ -2,12 +2,12 @@ from connection import Connection
 import psycopg2
 import json
 from config import DBNAME, PORT, HOST, USER, PASSWORD
+import time
 
 class DBService(Connection):
 	def handle_delivery(self, ch, method, header, body):
 		sanitised = json.loads(body)
-		self.cur.execute("INSERT INTO prices VALUES (%s, %s, %s)", 
-						 (sanitised['current_time'], sanitised['quote'], sanitised['stock']))
+		self.insert_market_depth(sanitised['depth'])
 
 	def connect_to_database(self, port, dbname, host, user, password):
 		self.conn = psycopg2.connect(database=dbname, host=host,
@@ -15,6 +15,10 @@ class DBService(Connection):
 								  password=password)
 		self.conn.autocommit = True
 		self.cur = self.conn.cursor()
+
+	def insert_market_depth(self, data):
+		self.cur.execute("INSERT INTO market_depth VALUES (%s, %s, %s)", 
+						 (data['total_volume_int'], data['price'], int(time.time())))
 
 	def monitor(self):
 		self.connect_to_database(port=PORT, dbname=DBNAME, 

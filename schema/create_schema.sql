@@ -1,0 +1,1 @@
+CREATE TABLE market_depth (time INT8, price NUMERIC, depth INT8);

@@ -1,8 +1,8 @@
 import sys
 
-from rabbitmqclient import *
+from rabbit.rabbitmqclient import *
 publisher = PikaPublisher(exchange_name="ticker")
 
 from buyer import * 
-buyer = Buyer(publisher, "", sys.argv[1])
+buyer = Buyer(publisher, "", 'depth.BTCUSD')
 buyer.monitor()
