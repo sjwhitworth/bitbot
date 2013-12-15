@@ -10,10 +10,7 @@ class Ticker():
 		self.qname = qname
 
 	def connect_to_mtgox_socket(self):
-		self.ws = create_connection("wss://websocket.mtgox.com:443/mtgox?Currency=USD")
-
-	def get_quote(self):
-		pass
+		self.ws = create_connection("wss://websocket.mtgox.com:443/mtgox?Currency=USD,EUR,JPY,GBP")
 
 	def monitor(self):
 		self.connect_to_mtgox_socket()

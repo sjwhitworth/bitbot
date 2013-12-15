@@ -17,8 +17,11 @@ class DBService(Connection):
 		self.cur = self.conn.cursor()
 
 	def insert_market_depth(self, data):
-		self.cur.execute("INSERT INTO market_depth VALUES (%s, %s, %s)", 
+		self.cur.execute("INSERT INTO market_depth (depth, price, time) VALUES (%s, %s, %s)", 
 						 (data['total_volume_int'], data['price'], int(time.time())))
+
+	def insert_ticks(self, data):
+		print data
 
 	def monitor(self):
 		self.connect_to_database(port=PORT, dbname=DBNAME, 
