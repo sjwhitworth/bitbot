@@ -22,5 +22,5 @@ class Buyer(Connection):
 		if depth['price'] not in market_depth:
 			market_depth[depth['price']] = depth['total_volume_int']
 		else:
-			market_depth[depth['price']] += depth['total_volume_int']
+			market_depth[depth['price']] = depth['total_volume_int']
 
